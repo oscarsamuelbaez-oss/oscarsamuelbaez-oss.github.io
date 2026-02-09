@@ -5,6 +5,7 @@ Este proyecto es el sitio web oficial de Sericolorpy, rediseñado con tecnologí
 ## 🚀 Características Principales
 
 *   **Diseño Premium**: Interfaz moderna con glassmorphism, gradientes y animaciones suaves.
+*   **AI Design Studio**: Generador de diseños de remeras impulsado por Inteligencia Artificial (Flux AI).
 *   **Configurador Interactivo**: Vista previa en tiempo real de colores, cuellos y telas.
 *   **Pedidos vía WhatsApp**: Sistema integrado que genera mensajes detallados y PDFs automáticos.
 *   **100% Estático**: No requiere servidor backend, ideal para un despliegue rápido y seguro.
@@ -40,4 +41,3 @@ El sitio está optimizado para funcionar perfectamente en GitHub Pages. Sigue es
 *   Desarrollo: Google DeepMind Agent (Antigravity)
 *   Diseño: Personalizado para Sericolorpy
 *   Tecnologías: HTML5, TailwindCSS, JavaScript, Pollinations AI
-
