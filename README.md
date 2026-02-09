@@ -1,43 +1,39 @@
-# Sericolorpy - Sitio Web Moderno
+# Imágenes para Sericolorpy
 
-Este proyecto es el sitio web oficial de Sericolorpy, rediseñado con tecnologías modernas y una experiencia de usuario mejorada.
+Esta carpeta debe contener las siguientes imágenes para el sitio web.
 
-## 🚀 Características Principales
+## Imágenes Requeridas
 
-*   **Diseño Premium**: Interfaz moderna con glassmorphism, gradientes y animaciones suaves.
-*   **AI Design Studio**: Generador de diseños de remeras impulsado por Inteligencia Artificial (Flux AI).
-*   **Configurador Interactivo**: Vista previa en tiempo real de colores, cuellos y telas.
-*   **Pedidos vía WhatsApp**: Sistema integrado que genera mensajes detallados y PDFs automáticos.
-*   **100% Estático**: No requiere servidor backend, ideal para un despliegue rápido y seguro.
+### Hero y Fondos
+- `hero-bg.jpg` - Composición de artículos personalizados (1920x1080)
+- `ambiente.jpg` - Taller de serigrafía (1200x800)
+- `equipo.jpg` - Equipo de trabajo (1200x800)
+- `cta-bg.jpg` - Fondo con bokeh elegante (1920x600)
 
-## 🌐 Cómo Publicar en GitHub Pages
+### Servicios (800x800 cada una)
+- `servicio-remeras.jpg` - Remeras personalizadas
+- `servicio-corporativos.jpg` - Regalos corporativos
+- `servicio-gorras.jpg` - Gorras y sombreros
+- `servicio-merchandising.jpg` - Merchandising de eventos
+- `servicio-calcos.jpg` - Calcomanías y stickers
+- `servicio-especiales.jpg` - Artículos especiales
 
-El sitio está optimizado para funcionar perfectamente en GitHub Pages. Sigue estos pasos para publicarlo:
+### Productos Específicos (800x800)
+- `remera-basica.jpg`, `remera-premium.jpg`, `remera-estampada.jpg`, `remera-oversized.jpg`
+- `hoppys.jpg`, `vasos.jpg`, `llaveros.jpg`, `boligrafos.jpg`, `mochilas.jpg`, `tazas.jpg`
+- `gorra-beisbol.jpg`, `gorra-trucker.jpg`, `quepis.jpg`, `sombreros.jpg`
+- `camiseta-evento.jpg`, `bolsas-tela.jpg`, `pulseras.jpg`, `gorras-evento.jpg`, `bandanas.jpg`, `accesorios.jpg`
+- `stickers-pequenos.jpg`, `calcos-medianas.jpg`, `stickers-grandes.jpg`, `reflectivas.jpg`, `etiquetas.jpg`
+- `calendarios.jpg`, `almohadas.jpg`, `mantas.jpg`, `tote-bags.jpg`, `gorros-invierno.jpg`, `consulta-especial.jpg`
 
-1.  **Sube tu código**: Asegúrate de subir todas las carpetas, especialmente `img/`, `css/` y `js/` a tu repositorio de GitHub.
-    *   **IMPORTANTE**: Si subes los archivos manualmente arrastrándolos, asegúrate de arrastrar las **CARPETAS COMPLETAS** (`img`, `js`, `css`), no solo los archivos sueltos. La estructura de carpetas debe mantenerse intacta en GitHub.
-2.  **Configuración**: Ve a la pestaña **Settings** de tu repositorio.
-3.  **Pages**: En el menú lateral izquierdo, haz clic en **Pages**.
-4.  **Source**: Selecciona **Deploy from a branch**.
-5.  **Branch**: Elige `main` (o `master`) y la carpeta `/ (root)`.
-6.  **Guardar**: Haz clic en Save.
+### Galería Social (800x800)
+- `social-1.jpg` a `social-6.jpg`
 
-¡En unos minutos tu sitio estará en vivo! GitHub te dará un enlace (ej: `tu-usuario.github.io/tu-repo`).
+## Fuentes de Imágenes
 
-> **Nota Importante**: Las imágenes y enlaces están configurados con **rutas relativas** para asegurar que funcionen correctamente tanto en tu computadora como en la versión publicada.
+Puedes obtener imágenes de stock de alta calidad en:
+- [Unsplash](https://unsplash.com)
+- [Pexels](https://pexels.com)
+- [Pixabay](https://pixabay.com)
 
-## 📁 Estructura del Proyecto
-
-*   **`index.html`**: Página de Inicio (Landing Page).
-*   **`remeras.html`**: Configurador y AI Design Studio.
-*   **`servicios.html`**: Catálogo de servicios.
-*   **`contacto.html`**: Información de contacto.
-*   **`js/`**:
-    *   `gemini-integration.js`: Lógica de Inteligencia Artificial.
-    *   `remeras-configurador.js`: Funcionalidad del configurador.
-*   **`img/`**: Imágenes optimizadas del proyecto.
-
-## 🎨 Créditos
-*   Desarrollo: Google DeepMind Agent (Antigravity)
-*   Diseño: Personalizado para Sericolorpy
-*   Tecnologías: HTML5, TailwindCSS, JavaScript, Pollinations AI
+Buscar términos como: "screen printing", "custom t-shirts", "promotional products", "corporate gifts", "merchandise"
