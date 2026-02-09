@@ -15,6 +15,7 @@ Este proyecto es el sitio web oficial de Sericolorpy, rediseñado con tecnologí
 El sitio está optimizado para funcionar perfectamente en GitHub Pages. Sigue estos pasos para publicarlo:
 
 1.  **Sube tu código**: Asegúrate de subir todas las carpetas, especialmente `img/`, `css/` y `js/` a tu repositorio de GitHub.
+    *   **IMPORTANTE**: Si subes los archivos manualmente arrastrándolos, asegúrate de arrastrar las **CARPETAS COMPLETAS** (`img`, `js`, `css`), no solo los archivos sueltos. La estructura de carpetas debe mantenerse intacta en GitHub.
 2.  **Configuración**: Ve a la pestaña **Settings** de tu repositorio.
 3.  **Pages**: En el menú lateral izquierdo, haz clic en **Pages**.
 4.  **Source**: Selecciona **Deploy from a branch**.
