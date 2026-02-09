@@ -3,7 +3,7 @@
  * Handles all WhatsApp interaction buttons across the website
  */
 
-const WHATSAPP_NUMBER = '59521494343'; // Without + or spaces
+const WHATSAPP_NUMBER = '595982592314'; // Without + or spaces
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
 /**

@@ -1,408 +1,423 @@
 /**
- * Remeras Configurador - Enhanced T-Shirt Customization Tool
- * Interactive configurator for Sericolorpy t-shirt orders
- * Includes dynamic garment preview, Gemini AI integration, and PDF generation
+ * Professional T-Shirt Configurator
  */
 
-// Configuration state
-const remeraConfig = {
+const WHATSAPP_NUMBER = '595982592314';
+
+let config = {
+    step: 1,
     color: '#FFFFFF',
     colorName: 'Blanco',
     tela: 'Algodón 100%',
     cuello: 'Redondo',
+    perspective: 'front',
+
+    // Image State
+    imageUrl: null,
+    imageName: '',
+    imgScale: 100,
+    imgRotate: 0,
+    imgX: 0,
+    imgY: 0,
+
+    // Text State
+    text: '',
+    font: "'Inter', sans-serif",
+    textSize: 32,
+    textColor: '#000000',
+    textStroke: '#FFFFFF',
+    textRotate: 0,
+    textBold: false,
+    textItalic: false,
+    textX: 0,
+    textY: 0,
+
     tamano: 'M',
     cantidad: 10,
-    imagen: null,
-    imagenNombre: '',
     notas: ''
 };
 
-// WhatsApp configuration
-const WHATSAPP_NUMBER = '595982317274';
+// Drag State
+let dragItem = null;
+let activeItem = null; // 'image' or 'text'
+let dragStartX = 0;
+let dragStartY = 0;
+let initialX = 0;
+let initialY = 0;
 
-/**
- * Initialize the configurator when DOM is ready
- */
-document.addEventListener('DOMContentLoaded', function () {
-    initializeEventListeners();
-    updatePreview();
-    updateTshirtPreview();
+document.addEventListener('DOMContentLoaded', () => {
+    initEvents();
+    updateUI();
+    setupDraggable();
 });
 
-/**
- * Set up all event listeners
- */
-function initializeEventListeners() {
-    // Color selection
-    document.querySelectorAll('input[name="color"]').forEach(input => {
-        input.addEventListener('change', function () {
-            remeraConfig.color = this.value;
-            updateTShirtColor(this.value);
+function initEvents() {
+    // Step 1 Controls
+    document.querySelectorAll('input[name="color"]').forEach(r => {
+        r.addEventListener('change', (e) => {
+            config.color = e.target.value;
+            config.colorName = e.target.parentElement.title;
+            updatePreview();
         });
     });
 
-    // Fabric selection (tela)
-    const telaSelect = document.querySelector('select[name="tela"]');
-    if (telaSelect) {
-        telaSelect.addEventListener('change', function () {
-            remeraConfig.tela = this.value;
-            updateTshirtPreview(); // Update preview based on fabric type
-        });
-    }
-
-    // Collar selection (cuello)
-    const cuelcelloSelect = document.querySelector('select[name="cuello"]');
-    if (cuelcelloSelect) {
-        cuelcelloSelect.addEventListener('change', function () {
-            remeraConfig.cuello = this.value;
-            updateCollarPreview(this.value); // Update collar visual
-        });
-    }
-
-    // Size selection
-    document.querySelectorAll('input[name="tamano"]').forEach(input => {
-        input.addEventListener('change', function () {
-            remeraConfig.tamano = this.value;
-        });
+    document.querySelector('select[name="tela"]').addEventListener('change', (e) => config.tela = e.target.value);
+    document.querySelector('select[name="cuello"]').addEventListener('change', (e) => {
+        config.cuello = e.target.value;
+        updatePreview();
     });
 
-    // Quantity input
-    const cantidadInput = document.getElementById('cantidad');
-    if (cantidadInput) {
-        cantidadInput.addEventListener('change', function () {
-            remeraConfig.cantidad = Math.max(1, Math.min(999, parseInt(this.value) || 1));
-            this.value = remeraConfig.cantidad;
-        });
-    }
+    // Image Upload
+    const fileInput = document.getElementById('image-upload');
+    if (fileInput) fileInput.addEventListener('change', handleImageUpload);
 
-    // Notes textarea
-    const notasInput = document.getElementById('notas');
-    if (notasInput) {
-        notasInput.addEventListener('input', function () {
-            remeraConfig.notas = this.value;
-            const charCount = document.getElementById('char-count');
-            if (charCount) {
-                charCount.textContent = this.value.length;
-            }
-        });
-    }
+    // Image Controls
+    document.getElementById('img-scale').addEventListener('input', (e) => {
+        config.imgScale = e.target.value;
+        document.getElementById('img-scale-val').textContent = config.imgScale + '%';
+        applyImageTransform();
+    });
+    document.getElementById('img-rotate').addEventListener('input', (e) => {
+        config.imgRotate = e.target.value;
+        document.getElementById('img-rotate-val').textContent = config.imgRotate + '°';
+        applyImageTransform();
+    });
 
-    // Image upload
-    const imageUpload = document.getElementById('image-upload');
-    if (imageUpload) {
-        imageUpload.addEventListener('change', handleImageUpload);
-    }
+    // Text Inputs
+    const textInput = document.getElementById('custom-text');
+    textInput.addEventListener('input', (e) => {
+        config.text = e.target.value;
+        updateTextContent();
+    });
 
-    // Remove design button
-    const removeBtn = document.getElementById('remove-design');
-    if (removeBtn) {
-        removeBtn.addEventListener('click', removeDesign);
-    }
+    document.getElementById('font-family').addEventListener('change', (e) => {
+        config.font = e.target.value;
+        updateTextContent();
+    });
+
+    document.getElementById('text-color').addEventListener('input', (e) => {
+        config.textColor = e.target.value;
+        updateTextContent();
+    });
+
+    document.getElementById('text-stroke-color').addEventListener('input', (e) => {
+        config.textStroke = e.target.value;
+        updateTextContent();
+    });
+
+    // Text Controls
+    document.getElementById('text-size').addEventListener('input', (e) => {
+        config.textSize = e.target.value;
+        document.getElementById('text-size-val').textContent = config.textSize + 'px';
+        applyTextTransform();
+    });
+    document.getElementById('text-rotate').addEventListener('input', (e) => {
+        config.textRotate = e.target.value;
+        document.getElementById('text-rotate-val').textContent = config.textRotate + '°';
+        applyTextTransform();
+    });
+
+    // Size & Qty
+    document.querySelectorAll('input[name="tamano"]').forEach(r => {
+        r.addEventListener('change', (e) => config.tamano = e.target.value);
+    });
+    document.getElementById('cantidad').addEventListener('change', (e) => config.cantidad = e.target.value);
+    document.getElementById('notas').addEventListener('input', (e) => config.notas = e.target.value);
 }
 
-/**
- * Update t-shirt preview based on fabric type
- */
-function updateTshirtPreview() {
-    const tela = remeraConfig.tela;
-    const tshirtBase = document.getElementById('tshirt-base');
-
-    if (!tshirtBase) return;
-
-    // Adjust visual appearance based on fabric type
-    if (tela.includes('Polo') || tela.includes('Piqué')) {
-        // Show polo collar
-        updateCollarPreview('Polo');
-    } else if (tela.includes('Dry Fit') || tela.includes('Deportivo')) {
-        // Sporty style
-        tshirtBase.setAttribute('stroke-width', '1.5');
-    } else {
-        // Regular cotton tee
-        tshirtBase.setAttribute('stroke-width', '2');
+// ------ WIZARD NAV ------
+function nextStep() {
+    if (config.step < 3) {
+        config.step++;
+        updateWizard();
     }
 }
-
-/**
- * Update collar visual based on selection
- */
-function updateCollarPreview(collarType) {
-    const collar = document.getElementById('tshirt-collar');
-    if (!collar) return;
-
-    // Different SVG paths for different collar types
-    const collarPaths = {
-        'Redondo': 'M200,120 Q250,150 300,120',
-        'V': 'M200,120 L250,160 L300,120',
-        'Polo': 'M200,100 L200,140 Q250,145 300,140 L300,100 M225,100 L225,130 M275,100 L275,130'
-    };
-
-    const pathData = collarPaths[collarType] || collarPaths['Redondo'];
-    collar.setAttribute('d', pathData);
-}
-
-/**
- * Update t-shirt color
- */
-function updateTShirtColor(color) {
-    const tshirtBase = document.getElementById('tshirt-base');
-    if (tshirtBase) {
-        tshirtBase.setAttribute('fill', color);
-
-        // Adjust stroke color for dark shirts
-        const isDark = isColorDark(color);
-        tshirtBase.setAttribute('stroke', isDark ? '#555' : '#333');
-
-        const collar = document.getElementById('tshirt-collar');
-        if (collar) {
-            collar.setAttribute('stroke', isDark ? '#555' : '#333');
-        }
+function prevStep() {
+    if (config.step > 1) {
+        config.step--;
+        updateWizard();
     }
 }
+function updateWizard() {
+    document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+    document.getElementById(`step-${config.step}`).classList.add('active');
 
-/**
- * Check if a color is dark
- */
-function isColorDark(hexColor) {
-    const hex = hexColor.replace('#', '');
-    const r = parseInt(hex.substr(0, 2), 16);
-    const g = parseInt(hex.substr(2, 2), 16);
-    const b = parseInt(hex.substr(4, 2), 16);
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    return brightness < 128;
+    const progress = document.getElementById('progress-bar');
+    const indicator = document.getElementById('step-indicator');
+    const title = document.getElementById('step-title');
+
+    const steps = ['Base', 'Diseño', 'Confirmación'];
+    title.textContent = steps[config.step - 1];
+    indicator.textContent = `Paso ${config.step} de 3`;
+    progress.style.width = `${(config.step / 3) * 100}%`;
+
+    document.getElementById('btn-prev').disabled = config.step === 1;
+    document.getElementById('btn-next').classList.toggle('hidden', config.step === 3);
+    document.getElementById('btn-finish').classList.toggle('hidden', config.step !== 3);
+
+    if (config.step === 3) updateSummary();
 }
 
-/**
- * Update preview (legacy function for compatibility)
- */
+function updateSummary() {
+    let html = `<p><strong>Color:</strong> ${config.colorName}</p>
+                <p><strong>Tela:</strong> ${config.tela}</p>
+                <p><strong>Vista:</strong> ${config.perspective === 'front' ? 'Frente' : 'Dorso'}</p>`;
+
+    let extras = [];
+    if (config.imageUrl) extras.push("Logo Personalizado");
+    if (config.text) extras.push(`Texto: "${config.text}"`);
+    if (extras.length) html += `<p><strong>Extras:</strong> ${extras.join(', ')}</p>`;
+
+    html += `<p class="mt-2 text-lg"><strong>Total:</strong> ${config.cantidad} unidades (Talla ${config.tamano})</p>`;
+    document.getElementById('summary-content').innerHTML = html;
+}
+
+// ------ LOGIC ------
+function setPerspective(view) {
+    config.perspective = view;
+    document.getElementById('btn-front').classList.toggle('active', view === 'front');
+    document.getElementById('btn-back').classList.toggle('active', view === 'back');
+    document.getElementById('btn-front').classList.toggle('text-gray-500', view !== 'front');
+    document.getElementById('btn-back').classList.toggle('text-gray-500', view !== 'back');
+    updatePreview();
+}
+
 function updatePreview() {
-    updateTShirtColor(remeraConfig.color);
+    const base = document.getElementById('tshirt-base');
+    const collar = document.getElementById('tshirt-collar');
+    base.setAttribute('fill', config.color);
+
+    if (config.perspective === 'back') {
+        collar.setAttribute('d', 'M200,120 Q250,130 300,120');
+    } else {
+        if (config.cuello === 'V') collar.setAttribute('d', 'M200,120 L250,160 L300,120');
+        else if (config.cuello === 'Polo') collar.setAttribute('d', 'M200,120 L200,140 Q250,145 300,140 L300,120');
+        else collar.setAttribute('d', 'M200,120 Q250,150 300,120');
+    }
 }
 
-/**
- * Adjust quantity
- */
-function adjustQuantity(delta) {
-    const input = document.getElementById('cantidad');
-    if (!input) return;
+function switchToolTab(tab) {
+    document.getElementById('tool-image').classList.add('hidden');
+    document.getElementById('tool-text').classList.add('hidden');
+    document.getElementById('tool-' + tab).classList.remove('hidden');
 
-    const newValue = Math.max(1, Math.min(999, parseInt(input.value || 10) + delta));
-    input.value = newValue;
-    remeraConfig.cantidad = newValue;
+    document.getElementById('tab-image').classList.remove('border-brand-red', 'text-brand-red');
+    document.getElementById('tab-text').classList.remove('border-brand-red', 'text-brand-red');
+    document.getElementById('tab-image').classList.add('text-gray-500', 'border-transparent');
+    document.getElementById('tab-text').classList.add('text-gray-500', 'border-transparent');
+
+    document.getElementById('tab-' + tab).classList.add('border-brand-red', 'text-brand-red');
+    document.getElementById('tab-' + tab).classList.remove('text-gray-500', 'border-transparent');
+
+    activeItem = tab === 'image' ? (config.imageUrl ? 'image' : null) : (config.text ? 'text' : null);
 }
 
-/**
- * Handle image upload
- */
-function handleImageUpload(event) {
-    const file = event.target.files[0];
+// ------ IMAGE ACTIONS ------
+function handleImageUpload(e) {
+    const file = e.target.files[0];
     if (!file) return;
 
-    // Validate file type
-    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
-    if (!validTypes.includes(file.type)) {
-        alert('Formato no soportado. Por favor sube un archivo JPG, PNG, GIF o WebP.');
-        return;
-    }
-
-    // Validate file size (5MB max)
-    if (file.size > 5 * 1024 * 1024) {
-        alert('El archivo es demasiado grande. El tamaño máximo es 5MB.');
-        return;
-    }
-
-    // Read and display the file
     const reader = new FileReader();
-    reader.onload = function (e) {
-        remeraConfig.imagen = e.target.result;
-        remeraConfig.imagenNombre = file.name;
+    reader.onload = function (evt) {
+        config.imageUrl = evt.target.result;
+        config.imageName = file.name;
 
-        // Display preview on t-shirt
-        const previewImage = document.getElementById('preview-image');
-        const uploadPlaceholder = document.getElementById('upload-placeholder');
+        const img = document.getElementById('preview-image');
+        img.src = config.imageUrl;
+        document.getElementById('image-wrapper').classList.remove('hidden');
+        document.getElementById('remove-image-btn').classList.remove('hidden');
+        document.getElementById('image-controls').classList.remove('hidden');
 
-        if (previewImage && uploadPlaceholder) {
-            previewImage.src = e.target.result;
-            previewImage.classList.remove('hidden');
-            uploadPlaceholder.classList.add('hidden');
-        }
+        activeItem = 'image';
+        applyImageTransform();
     };
     reader.readAsDataURL(file);
 }
 
-/**
- * Remove design
- */
-function removeDesign() {
-    remeraConfig.imagen = null;
-    remeraConfig.imagenNombre = '';
+function removeImage() {
+    config.imageUrl = null;
+    document.getElementById('image-wrapper').classList.add('hidden');
+    document.getElementById('image-controls').classList.add('hidden');
+    document.getElementById('remove-image-btn').classList.add('hidden');
+    document.getElementById('image-upload').value = '';
+    activeItem = null;
+}
 
-    const container = document.getElementById('tshirt-container');
-    if (container) {
-        container.classList.remove('full-cover-mode');
+function applyImageTransform() {
+    const wrapper = document.getElementById('image-wrapper');
+    wrapper.style.transform = `translate(${config.imgX}px, ${config.imgY}px) rotate(${config.imgRotate}deg) scale(${config.imgScale / 100})`;
+}
+
+function centerImage() {
+    config.imgX = 0;
+    config.imgY = 0;
+    applyImageTransform();
+}
+
+function resetImageTransform() {
+    config.imgX = 0;
+    config.imgY = 0;
+    config.imgScale = 100;
+    config.imgRotate = 0;
+    document.getElementById('img-scale').value = 100;
+    document.getElementById('img-rotate').value = 0;
+    document.getElementById('img-scale-val').innerText = '100%';
+    document.getElementById('img-rotate-val').innerText = '0°';
+    applyImageTransform();
+}
+
+// ------ TEXT ACTIONS ------
+function updateTextContent() {
+    const overlay = document.getElementById('text-overlay');
+    const wrapper = document.getElementById('text-wrapper');
+
+    if (!config.text) {
+        wrapper.classList.add('hidden');
+        return;
     }
 
-    const previewImage = document.getElementById('preview-image');
-    const uploadPlaceholder = document.getElementById('upload-placeholder');
-    const imageUpload = document.getElementById('image-upload');
+    wrapper.classList.remove('hidden');
+    activeItem = 'text';
 
-    if (previewImage) {
-        previewImage.src = '';
-        previewImage.classList.add('hidden');
-    }
+    overlay.innerText = config.text;
 
-    if (uploadPlaceholder) {
-        uploadPlaceholder.classList.remove('hidden');
-    }
+    // Clean font string to remove extra quotes if duplicated
+    let cleanFont = config.font.replace(/'/g, "").replace(/"/g, "");
+    // Re-add quotes only for family name if needed, usually simple font family is enough
+    if (cleanFont.includes(",")) cleanFont = cleanFont.split(',')[0];
 
-    if (imageUpload) {
-        imageUpload.value = '';
+    overlay.style.fontFamily = `'${cleanFont}', sans-serif`;
+    overlay.style.color = config.textColor;
+    overlay.style.webkitTextStroke = `1px ${config.textStroke}`;
+
+    applyTextTransform();
+}
+
+function applyTextTransform() {
+    const wrapper = document.getElementById('text-wrapper');
+    const overlay = document.getElementById('text-overlay');
+
+    wrapper.style.transform = `translate(${config.textX}px, ${config.textY}px) rotate(${config.textRotate}deg)`;
+    overlay.style.fontSize = `${config.textSize}px`;
+    overlay.style.fontWeight = config.textBold ? 'bold' : 'normal';
+    overlay.style.fontStyle = config.textItalic ? 'italic' : 'normal';
+}
+
+function toggleTextWeight() {
+    config.textBold = !config.textBold;
+    document.getElementById('btn-bold').classList.toggle('bg-gray-200');
+    applyTextTransform();
+}
+
+function toggleTextItalic() {
+    config.textItalic = !config.textItalic;
+    document.getElementById('btn-italic').classList.toggle('bg-gray-200');
+    applyTextTransform();
+}
+
+function updateTextOverlay() {
+    updateTextContent();
+}
+
+// ------ DRAG AND DROP ------
+function setupDraggable() {
+    const designArea = document.getElementById('design-area');
+
+    // Image Drag
+    const imgWrapper = document.getElementById('image-wrapper');
+    imgWrapper.addEventListener('mousedown', startDrag);
+    imgWrapper.addEventListener('touchstart', startDrag);
+
+    // Text Drag
+    const textWrapper = document.getElementById('text-wrapper');
+    textWrapper.addEventListener('mousedown', startDrag);
+    textWrapper.addEventListener('touchstart', startDrag);
+
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('touchmove', drag);
+    document.addEventListener('mouseup', endDrag);
+    document.addEventListener('touchend', endDrag);
+}
+
+function startDrag(e) {
+    e.preventDefault();
+    if (e.target.closest('#image-wrapper')) dragItem = 'image';
+    else if (e.target.closest('#text-wrapper')) dragItem = 'text';
+
+    if (!dragItem) return;
+
+    // Highlight active
+    activeItem = dragItem;
+
+    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+    dragStartX = clientX;
+    dragStartY = clientY;
+
+    if (dragItem === 'image') {
+        initialX = config.imgX;
+        initialY = config.imgY;
+    } else {
+        initialX = config.textX;
+        initialY = config.textY;
     }
 }
 
-/**
- * Generate PDF with configuration
- */
-async function generatePDF() {
-    // Check if jsPDF is loaded
-    if (typeof window.jspdf === 'undefined') {
-        console.error('jsPDF library not loaded');
-        alert('Error: No se pudo generar el PDF. Por favor recarga la página.');
-        return null;
+function drag(e) {
+    if (!dragItem) return;
+    e.preventDefault();
+
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+    const deltaX = clientX - dragStartX;
+    const deltaY = clientY - dragStartY;
+
+    if (dragItem === 'image') {
+        config.imgX = initialX + deltaX;
+        config.imgY = initialY + deltaY;
+        applyImageTransform();
+    } else {
+        config.textX = initialX + deltaX;
+        config.textY = initialY + deltaY;
+        applyTextTransform();
     }
-
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // Header
-    doc.setFontSize(20);
-    doc.setTextColor(227, 6, 19); // brand-red
-    doc.text('SERICOLORPY', 105, 20, { align: 'center' });
-
-    doc.setFontSize(12);
-    doc.setTextColor(0, 0, 0);
-    doc.text('Pedido de Remera Personalizada', 105, 28, { align: 'center' });
-
-    // Add line
-    doc.setDrawColor(227, 6, 19);
-    doc.setLineWidth(0.5);
-    doc.line(20, 32, 190, 32);
-
-    // Configuration details
-    let y = 45;
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('ESPECIFICACIONES DEL PRODUCTO:', 20, y);
-
-    y += 10;
-    doc.setFont('helvetica', 'normal');
-    doc.text(`Color: ${remeraConfig.colorName}`, 25, y);
-
-    y += 7;
-    doc.text(`Tipo de Tela: ${remeraConfig.tela}`, 25, y);
-
-    y += 7;
-    doc.text(`Tipo de Cuello: ${remeraConfig.cuello}`, 25, y);
-
-    y += 7;
-    doc.text(`Talle: ${remeraConfig.tamano}`, 25, y);
-
-    y += 7;
-    doc.text(`Cantidad: ${remeraConfig.cantidad} unidades`, 25, y);
-
-    // Image info if present
-    if (remeraConfig.imagenNombre) {
-        y += 10;
-        doc.setFont('helvetica', 'bold');
-        doc.text('DISEÑO PERSONALIZADO:', 20, y);
-        y += 7;
-        doc.setFont('helvetica', 'normal');
-        doc.text(`Archivo: ${remeraConfig.imagenNombre}`, 25, y);
-
-        // Add image preview if available
-        if (remeraConfig.imagen) {
-            y += 10;
-            try {
-                doc.addImage(remeraConfig.imagen, 'PNG', 70, y, 70, 70);
-                y += 75;
-            } catch (error) {
-                console.error('Error adding image to PDF:', error);
-            }
-        }
-    }
-
-    // Notes if present
-    if (remeraConfig.notas) {
-        y += 5;
-        doc.setFont('helvetica', 'bold');
-        doc.text('NOTAS ESPECIALES:', 20, y);
-        y += 7;
-        doc.setFont('helvetica', 'normal');
-        const splitNotes = doc.splitTextToSize(remeraConfig.notas, 170);
-        doc.text(splitNotes, 25, y);
-        y += (splitNotes.length * 7);
-    }
-
-    // Footer
-    y = 270;
-    doc.setFontSize(9);
-    doc.setTextColor(100, 100, 100);
-    doc.text('Sericolorpy - 29 años de experiencia en serigrafía', 105, y, { align: 'center' });
-    doc.text('WhatsApp: +595 982 317 274 | Email: sericolorpy@yahoo.com', 105, y + 5, { align: 'center' });
-
-    return doc;
 }
 
-/**
- * Send order via WhatsApp with PDF
- */
-async function enviarPedidoWhatsApp() {
-    // Build the message
-    let message = `Hola, me gustaría solicitar un pedido de remera personalizada con las siguientes especificaciones:\n\n`;
-    message += `📋 *ESPECIFICACIONES:*\n`;
-    message += `• Color: ${remeraConfig.colorName}\n`;
-    message += `• Tipo de Tela: ${remeraConfig.tela}\n`;
-    message += `• Cuello: ${remeraConfig.cuello}\n`;
-    message += `• Talle: ${remeraConfig.tamano}\n`;
-    message += `• Cantidad: ${remeraConfig.cantidad} unidades\n`;
-
-    if (remeraConfig.imagenNombre) {
-        message += `\n🎨 *Diseño Personalizado:* ${remeraConfig.imagenNombre}\n`;
-        message += `(La imagen y el PDF serán enviados a continuación)\n`;
-    }
-
-    if (remeraConfig.notas) {
-        message += `\n📝 *Notas Especiales:*\n${remeraConfig.notas}\n`;
-    }
-
-    message += `\n¿Podrían confirmar disponibilidad y enviarme un presupuesto?`;
-
-    // Generate PDF
-    try {
-        const pdf = await generatePDF();
-        if (pdf) {
-            // Save PDF
-            const pdfFilename = `Pedido_Remera_${Date.now()}.pdf`;
-            pdf.save(pdfFilename);
-
-            // Short delay to allow PDF download
-            await new Promise(resolve => setTimeout(resolve, 500));
-        }
-    } catch (error) {
-        console.error('Error generating PDF:', error);
-    }
-
-    // Open WhatsApp
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`, '_blank');
+function endDrag() {
+    dragItem = null;
 }
 
-/**
- * Toggle modal
- */
-function toggleModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.classList.toggle('hidden');
-        modal.classList.toggle('flex');
-    }
+// ------ SEND WHATSAPP ------
+function enviarPedidoWhatsApp() {
+    let msg = `Hola Sericolorpy! Pedido Web:%0A`;
+    msg += `------------------%0A`;
+    msg += `Base: ${config.colorName} (${config.tela}, ${config.cuello})%0A`;
+    msg += `Talle: ${config.tamano} - Cantidad: ${config.cantidad}%0A`;
+
+    if (config.imageUrl) msg += `[Con Logo Adjunto] - Rotación: ${config.imgRotate}°%0A`;
+    if (config.text) msg += `Texto: "${config.text}" (${config.font}, ${config.textSize}px)%0A`;
+
+    if (config.notas) msg += `Notas: ${config.notas}%0A`;
+    msg += `------------------%0A`;
+    msg += `¿Podrían confirmarme el precio?`;
+
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+}
+
+function resetDesign() {
+    if (confirm("¿Borrar todo?")) location.reload();
+}
+
+function adjustQty(amount) {
+    let newQty = parseInt(document.getElementById('cantidad').value) + amount;
+    if (newQty < 1) newQty = 1;
+    document.getElementById('cantidad').value = newQty;
+    config.cantidad = newQty;
+}
+
+function updateUI() {
+    updateWizard();
+    updatePreview();
 }
