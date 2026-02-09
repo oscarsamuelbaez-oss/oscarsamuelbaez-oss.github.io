@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Sericolorpy</title>
+    <meta name="description"
+        content="Contacta con Sericolorpy. Solicita presupuestos, consultas y más. Ubicación: Iturbe 879, Asunción, Paraguay.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-red': '#E30613',
+                        'brand-blue': '#0054A6',
+                        'brand-yellow': '#FFD700',
+                        'brand-green': '#7FFF00',
+                        'brand-dark': '#1F1F1F',
+                        'brand-gray': '#4A4A4A',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-brand {
+            background: linear-gradient(135deg, #E30613 0%, #0054A6 50%, #7FFF00 100%);
+        }
+
+        .gradient-cta {
+            background: linear-gradient(135deg, #E30613 0%, #0054A6 100%);
+        }
+
+        .gradient-line {
+            height: 4px;
+            background: linear-gradient(90deg, #E30613 0%, #0054A6 50%, #7FFF00 100%);
+        }
+
+        .backdrop-blur-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #E30613 0%, #0054A6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Hamburger animation */
+        .hamburger span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button hover scale */
+        .btn-scale {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(227, 6, 19, 0.3);
+        }
+
+        /* Image zoom on hover */
+        .img-zoom {
+            transition: transform 0.5s ease;
+        }
+
+        .img-zoom:hover {
+            transform: scale(1.1);
+        }
+
+        /* WhatsApp button */
+        .btn-whatsapp {
+            background-color: #25D366;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 font-body">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-header">
+        <div class="gradient-line"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="font-heading text-2xl md:text-3xl font-bold text-white">
+                        Seri<span class="text-brand-red">color</span>py
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html" class="text-white hover:text-brand-yellow transition-colors duration-300">
+                        Inicio
+                    </a>
+                    <a href="servicios.html" class="text-white hover:text-brand-yellow transition-colors duration-300">
+                        Servicios
+                    </a>
+                    <a href="remeras.html" class="text-white hover:text-brand-yellow transition-colors duration-300">
+                        Remeras Personalizadas
+                    </a>
+                    <a href="contacto.html"
+                        class="text-brand-yellow hover:text-brand-yellow transition-colors duration-300">
+                        Contacto
+                    </a>
+                    <a href="contacto.html"
+                        class="gradient-cta text-white px-6 py-3 rounded-full font-semibold btn-scale">
+                        Solicitar Pedido
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="hamburger"
+                    class="hamburger lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5">
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="mobile-menu lg:hidden fixed top-24 right-0 w-72 h-screen bg-brand-dark/95 backdrop-blur-header p-6">
+            <nav class="flex flex-col space-y-6">
+                <a href="index.html" class="text-white hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-home mr-3"></i> Inicio
+                </a>
+                <a href="servicios.html" class="text-white hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-th-large mr-3"></i> Servicios
+                </a>
+                <a href="remeras.html" class="text-white hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-tshirt mr-3"></i> Remeras
+                </a>
+                <a href="contacto.html" class="text-brand-yellow hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-envelope mr-3"></i> Contacto
+                </a>
+                <a href="contacto.html"
+                    class="gradient-cta text-white px-6 py-3 rounded-full font-semibold text-center mt-4">
+                    Solicitar Pedido
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-24"></div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative py-24 lg:py-32 bg-brand-dark overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-red via-brand-blue to-brand-green"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-heading text-5xl md:text-6xl font-bold text-white mb-6">
+                Contacto
+            </h1>
+            <p class="text-gray-400 text-xl max-w-2xl mx-auto">
+                Estamos aquí para ayudarte
+            </p>
+            <div class="gradient-line w-32 mx-auto mt-8 rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Left Column: Contact Info -->
+                <div class="space-y-8">
+                    <!-- Info Card -->
+                    <div class="bg-brand-dark rounded-2xl overflow-hidden">
+                        <div class="gradient-line"></div>
+                        <div class="p-8 space-y-8">
+                            <!-- Hours -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    <i class="fas fa-clock mr-2"></i> Horarios de Atención
+                                </h3>
+                                <ul class="space-y-3 text-gray-300">
+                                    <li class="flex items-center">
+                                        <span class="w-40">Lunes a Viernes</span>
+                                        <span class="font-semibold text-white">8:00 - 17:00</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-40">Sábado</span>
+                                        <span class="font-semibold text-white">9:00 - 13:00</span>
+                                    </li>
+                                    <li class="flex items-center">
+                                        <span class="w-40">Domingo</span>
+                                        <span class="text-gray-500">Cerrado</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <hr class="border-gray-700">
+
+                            <!-- Location -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    <i class="fas fa-map-marker-alt mr-2"></i> Ubicación
+                                </h3>
+                                <p class="text-gray-300">
+                                    Iturbe 879 c/ Manuel Dominguez<br>
+                                    Asunción, Paraguay
+                                </p>
+                            </div>
+
+                            <hr class="border-gray-700">
+
+                            <!-- Phone -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    <i class="fas fa-phone mr-2"></i> Teléfono
+                                </h3>
+                                <a href="tel:+595982317274"
+                                    class="text-white text-xl font-semibold hover:text-brand-yellow transition-colors">
+                                    +595 982 317 274
+                                </a>
+                            </div>
+
+                            <hr class="border-gray-700">
+
+                            <!-- WhatsApp -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+                                </h3>
+                                <a href="https://wa.me/595982317274?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios."
+                                    target="_blank"
+                                    class="inline-flex items-center bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition-colors">
+                                    <i class="fab fa-whatsapp mr-2 text-xl"></i> Enviar Mensaje
+                                </a>
+                            </div>
+
+                            <hr class="border-gray-700">
+
+                            <!-- Email -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    <i class="fas fa-envelope mr-2"></i> Email
+                                </h3>
+                                <a href="mailto:sericolorpy@yahoo.com"
+                                    class="text-white hover:text-brand-yellow transition-colors">
+                                    sericolorpy@yahoo.com
+                                </a>
+                            </div>
+
+                            <hr class="border-gray-700">
+
+                            <!-- Benefits -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    <i class="fas fa-check-circle mr-2"></i> Notas Especiales
+                                </h3>
+                                <ul class="space-y-2 text-gray-300">
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-brand-green mr-3"></i>
+                                        Consultas de presupuesto sin compromiso
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-brand-green mr-3"></i>
+                                        Entrega a domicilio disponible
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-brand-green mr-3"></i>
+                                        Descuentos por cantidad
+                                    </li>
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-brand-green mr-3"></i>
+                                        Proyectos corporativos especiales
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <hr class="border-gray-700">
+
+                            <!-- Social -->
+                            <div>
+                                <h3 class="font-heading text-xl font-bold text-brand-yellow mb-4">
+                                    Redes Sociales
+                                </h3>
+                                <div class="flex gap-4">
+                                    <a href="https://facebook.com/sericolorpy" target="_blank"
+                                        class="w-14 h-14 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand-blue transition-colors">
+                                        <i class="fab fa-facebook-f text-white text-xl"></i>
+                                    </a>
+                                    <a href="https://instagram.com/sericolorpy" target="_blank"
+                                        class="w-14 h-14 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-colors">
+                                        <i class="fab fa-instagram text-white text-xl"></i>
+                                    </a>
+                                    <a href="https://wa.me/595982317274" target="_blank"
+                                        class="w-14 h-14 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
+                                        <i class="fab fa-whatsapp text-white text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Form -->
+                <div>
+                    <div class="bg-brand-dark rounded-2xl overflow-hidden">
+                        <div class="gradient-line"></div>
+                        <div class="p-8">
+                            <h2 class="font-heading text-2xl font-bold text-white mb-8">
+                                Solicita tu Presupuesto
+                            </h2>
+
+                            <form id="contact-form" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                                <!-- Name -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Nombre Completo
+                                        *</label>
+                                    <input type="text" name="nombre" required
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors"
+                                        placeholder="Tu nombre">
+                                </div>
+
+                                <!-- Email -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Email *</label>
+                                    <input type="email" name="email" required
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors"
+                                        placeholder="tu@email.com">
+                                </div>
+
+                                <!-- Phone -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Teléfono</label>
+                                    <input type="tel" name="telefono"
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors"
+                                        placeholder="+595 XXX XXX">
+                                </div>
+
+                                <!-- Service Type -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Tipo de
+                                        Servicio</label>
+                                    <select name="servicio"
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors">
+                                        <option value="">Selecciona un servicio</option>
+                                        <option value="Remeras Personalizadas">Remeras Personalizadas</option>
+                                        <option value="Regalos Corporativos">Regalos Corporativos</option>
+                                        <option value="Gorras y Sombreros">Gorras y Sombreros</option>
+                                        <option value="Merchandising de Eventos">Merchandising de Eventos</option>
+                                        <option value="Calcomanías y Adhesivos">Calcomanías y Adhesivos</option>
+                                        <option value="Artículos Especiales">Artículos Especiales</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+
+                                <!-- Quantity -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Cantidad
+                                        Aproximada</label>
+                                    <input type="text" name="cantidad"
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors"
+                                        placeholder="Ej: 50 unidades">
+                                </div>
+
+
+
+                                <!-- Description -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Descripción del
+                                        Proyecto *</label>
+                                    <textarea name="descripcion" required rows="4"
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors resize-none"
+                                        placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                                </div>
+
+                                <!-- Comments -->
+                                <div>
+                                    <label class="block text-gray-300 text-sm font-semibold mb-2">Comentarios
+                                        Adicionales</label>
+                                    <textarea name="comentarios" rows="3"
+                                        class="w-full bg-gray-800 text-white border-2 border-gray-700 rounded-xl px-4 py-3 focus:border-brand-red focus:outline-none transition-colors resize-none"
+                                        placeholder="Información adicional"></textarea>
+                                </div>
+
+                                <!-- Submit -->
+                                <button type="submit"
+                                    class="w-full gradient-cta text-white py-4 rounded-xl font-bold text-lg btn-scale flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i> Enviar Pedido
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-20 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-heading text-3xl md:text-4xl font-bold text-white text-center mb-12">
+                Cómo Llegar
+            </h2>
+
+            <!-- Map Container -->
+            <div class="rounded-2xl overflow-hidden shadow-2xl">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5!2d-57.6!3d-25.28!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIturbe%20879%2C%20Asunci%C3%B3n%2C%20Paraguay!5e0!3m2!1ses!2spy!4v1234567890"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="w-full">
+                </iframe>
+            </div>
+
+            <!-- Directions -->
+            <div class="grid md:grid-cols-3 gap-6 mt-12">
+                <div class="bg-gray-900 rounded-2xl p-6 text-center">
+                    <div class="w-14 h-14 bg-brand-red rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bus text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white mb-2">Transporte Público</h3>
+                    <p class="text-gray-400 text-sm">Ubicado en el centro de Asunción, fácil acceso por transporte
+                        público</p>
+                </div>
+                <div class="bg-gray-900 rounded-2xl p-6 text-center">
+                    <div class="w-14 h-14 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-car text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white mb-2">Estacionamiento</h3>
+                    <p class="text-gray-400 text-sm">Estacionamiento disponible en la zona</p>
+                </div>
+                <div class="bg-gray-900 rounded-2xl p-6 text-center">
+                    <div class="w-14 h-14 bg-brand-green rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-wheelchair text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-white mb-2">Accesibilidad</h3>
+                    <p class="text-gray-400 text-sm">Acceso para personas con movilidad reducida</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Form submission handler - sends to WhatsApp
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            let message = "Hola, quisiera solicitar un presupuesto:\n\n";
+            message += `📋 *DATOS DE CONTACTO*\n`;
+            message += `• Nombre: ${formData.get('nombre')}\n`;
+            message += `• Email: ${formData.get('email')}\n`;
+            if (formData.get('telefono')) message += `• Teléfono: ${formData.get('telefono')}\n`;
+            message += `\n`;
+
+            if (formData.get('servicio')) {
+                message += `🛍️ *SERVICIO*\n`;
+                message += `• Tipo: ${formData.get('servicio')}\n`;
+                if (formData.get('cantidad')) message += `• Cantidad: ${formData.get('cantidad')}\n`;
+                if (formData.get('presupuesto')) message += `• Presupuesto: ${formData.get('presupuesto')}\n`;
+                message += `\n`;
+            }
+
+            message += `📝 *DESCRIPCIÓN*\n`;
+            message += `${formData.get('descripcion')}\n`;
+
+            if (formData.get('comentarios')) {
+                message += `\n💬 *COMENTARIOS ADICIONALES*\n`;
+                message += `${formData.get('comentarios')}\n`;
+            }
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/595982317274?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white">
+        <!-- Gradient top border -->
+        <div class="gradient-line"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Column 1: Logo + Description -->
+                <div class="space-y-6">
+                    <a href="index.html" class="inline-block">
+                        <span class="font-heading text-2xl font-bold">
+                            Seri<span class="text-brand-red">color</span>py
+                        </span>
+                    </a>
+                    <p class="text-gray-400 leading-relaxed">
+                        Serigrafía y Regalos Empresariales desde 1996. Transformamos tus ideas en productos
+                        personalizados de alta calidad.
+                    </p>
+                    <p class="text-brand-yellow font-semibold italic">
+                        "La nueva imagen en serigrafía"
+                    </p>
+                </div>
+
+                <!-- Column 2: Navigation -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6 text-brand-yellow">Navegación</h4>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="index.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="servicios.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Servicios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="remeras.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Remeras Personalizadas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contacto.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Hours -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6 text-brand-yellow">Horarios de Atención</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-brand-red mr-3 mt-1"></i>
+                            <div>
+                                <span class="text-white font-medium">Lunes a Viernes</span><br>
+                                8:00 - 17:00
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-brand-red mr-3 mt-1"></i>
+                            <div>
+                                <span class="text-white font-medium">Sábado</span><br>
+                                9:00 - 13:00
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-gray-500 mr-3 mt-1"></i>
+                            <div>
+                                <span class="text-gray-500">Domingo</span><br>
+                                Cerrado
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6 text-brand-yellow">Contacto</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-brand-red mr-3 mt-1"></i>
+                            <span>Iturbe 879 c/ Manuel Dominguez<br>Asunción, Paraguay</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-brand-red mr-3"></i>
+                            <a href="tel:+595982317274" class="hover:text-brand-yellow transition-colors">
+                                +595 982 317 274
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-brand-red mr-3"></i>
+                            <a href="mailto:sericolorpy@yahoo.com" class="hover:text-brand-yellow transition-colors">
+                                sericolorpy@yahoo.com
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://facebook.com/sericolorpy" target="_blank"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand-blue transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/sericolorpy" target="_blank"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/595982317274" target="_blank"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p class="text-gray-500 text-sm text-center md:text-left">
+                        © 1996-2025 Sericolorpy. Todos los derechos reservados.
+                    </p>
+                    <p class="text-gray-500 text-sm">
+                        29 años de excelencia en serigrafía
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/595982317274?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20serigrafía."
+        target="_blank"
+        class="fixed bottom-6 right-6 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110 z-40">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <!-- WhatsApp Messages Script -->
+    <script src="js/whatsapp-messages.js"></script>
+</body>
+
+</html>

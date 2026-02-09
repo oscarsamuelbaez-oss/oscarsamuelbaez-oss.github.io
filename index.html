@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sericolorpy | Serigrafía y Regalos Empresariales Personalizados</title>
+    <meta name="description"
+        content="Expertos en serigrafía y personalización de regalos empresariales. 29 años de experiencia. Remeras, vasos, llaveros, gorras y más.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-red': '#E30613',
+                        'brand-blue': '#0054A6',
+                        'brand-yellow': '#FFD700',
+                        'brand-green': '#7FFF00',
+                        'brand-dark': '#1F1F1F',
+                        'brand-gray': '#4A4A4A',
+                    },
+                    fontFamily: {
+                        'heading': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-brand {
+            background: linear-gradient(135deg, #E30613 0%, #0054A6 50%, #7FFF00 100%);
+        }
+
+        .gradient-cta {
+            background: linear-gradient(135deg, #E30613 0%, #0054A6 100%);
+        }
+
+        .gradient-line {
+            height: 4px;
+            background: linear-gradient(90deg, #E30613 0%, #0054A6 50%, #7FFF00 100%);
+        }
+
+        .backdrop-blur-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #E30613 0%, #0054A6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Hamburger animation */
+        .hamburger span {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Button hover scale */
+        .btn-scale {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(227, 6, 19, 0.3);
+        }
+
+        /* Image zoom on hover */
+        .img-zoom {
+            transition: transform 0.5s ease;
+        }
+
+        .img-zoom:hover {
+            transform: scale(1.1);
+        }
+
+        /* WhatsApp button */
+        .btn-whatsapp {
+            background-color: #25D366;
+            transition: all 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-900 font-body">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-brand-dark/90 backdrop-blur-header">
+        <div class="gradient-line"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="font-heading text-2xl md:text-3xl font-bold text-white">
+                        Seri<span class="text-brand-red">color</span>py
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-brand-yellow hover:text-brand-yellow transition-colors duration-300">
+                        Inicio
+                    </a>
+                    <a href="servicios.html" class="text-white hover:text-brand-yellow transition-colors duration-300">
+                        Servicios
+                    </a>
+                    <a href="remeras.html" class="text-white hover:text-brand-yellow transition-colors duration-300">
+                        Remeras Personalizadas
+                    </a>
+                    <a href="contacto.html" class="text-white hover:text-brand-yellow transition-colors duration-300">
+                        Contacto
+                    </a>
+                    <a href="contacto.html"
+                        class="gradient-cta text-white px-6 py-3 rounded-full font-semibold btn-scale">
+                        Solicitar Pedido
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="hamburger"
+                    class="hamburger lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5">
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                    <span class="block w-6 h-0.5 bg-white"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu"
+            class="mobile-menu lg:hidden fixed top-24 right-0 w-72 h-screen bg-brand-dark/95 backdrop-blur-header p-6">
+            <nav class="flex flex-col space-y-6">
+                <a href="index.html" class="text-brand-yellow hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-home mr-3"></i> Inicio
+                </a>
+                <a href="servicios.html" class="text-white hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-th-large mr-3"></i> Servicios
+                </a>
+                <a href="remeras.html" class="text-white hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-tshirt mr-3"></i> Remeras
+                </a>
+                <a href="contacto.html" class="text-white hover:text-brand-yellow transition-colors text-lg">
+                    <i class="fas fa-envelope mr-3"></i> Contacto
+                </a>
+                <a href="contacto.html"
+                    class="gradient-cta text-white px-6 py-3 rounded-full font-semibold text-center mt-4">
+                    Solicitar Pedido
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Spacer for fixed header -->
+    <div class="h-24"></div>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0">
+            <img src="img/remeras/04_custom_tshirts.jpg" alt="Productos personalizados Sericolorpy"
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark/90 via-brand-dark/70 to-brand-blue/50"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Pretitle -->
+            <p
+                class="text-brand-blue font-semibold tracking-[0.3em] uppercase mb-4 text-sm md:text-base animate-fade-in">
+                PERSONALIZACIÓN PROFESIONAL
+            </p>
+
+            <!-- Main Title -->
+            <h1 class="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                Tus Ideas, <br class="hidden md:block">
+                <span class="text-gradient">Nuestro Arte</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto">
+                Serigrafía • Regalos Empresariales • Merchandising • Personalización
+            </p>
+
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="servicios.html"
+                    class="border-2 border-brand-red text-brand-red px-8 py-4 rounded-full font-semibold hover:bg-brand-red hover:text-white transition-all duration-300">
+                    <i class="fas fa-th-large mr-2"></i> Ver Catálogo Completo
+                </a>
+                <a href="contacto.html" class="gradient-cta text-white px-8 py-4 rounded-full font-semibold btn-scale">
+                    <i class="fas fa-paper-plane mr-2"></i> Solicitar Pedido
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white/50 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 lg:py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-6">
+                    <p class="text-brand-yellow font-semibold tracking-widest uppercase text-sm">
+                        QUIÉNES SOMOS
+                    </p>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-dark leading-tight">
+                        29 Años de Experiencia en Personalización
+                    </h2>
+                    <div class="space-y-4 text-brand-gray leading-relaxed">
+                        <p>
+                            Desde 1996, <strong class="text-brand-dark">Sericolorpy</strong> ha sido la solución
+                            confiable para empresas, eventos y celebraciones especiales. Nuestro equipo de expertos
+                            combina técnicas tradicionales con tecnología moderna para crear productos únicos y de
+                            calidad.
+                        </p>
+                        <p>
+                            Nos especializamos en transformar ideas en realidad a través de la serigrafía, grabado y
+                            personalización de artículos. Cada proyecto es único y merece atención especial.
+                        </p>
+                        <p>
+                            Contamos con un amplio catálogo de productos y la flexibilidad para adaptarnos a tus
+                            necesidades específicas.
+                        </p>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="flex flex-wrap items-center gap-4 pt-6 border-t border-gray-200">
+                        <div class="flex items-center">
+                            <span class="text-brand-red font-heading text-3xl font-bold">29</span>
+                            <span class="text-brand-gray ml-2">Años</span>
+                        </div>
+                        <div class="w-px h-8 bg-brand-red"></div>
+                        <div class="flex items-center">
+                            <span class="text-brand-red font-heading text-3xl font-bold">500+</span>
+                            <span class="text-brand-gray ml-2">Clientes</span>
+                        </div>
+                        <div class="w-px h-8 bg-brand-red"></div>
+                        <div class="flex items-center">
+                            <span class="text-brand-red font-heading text-3xl font-bold">1000+</span>
+                            <span class="text-brand-gray ml-2">Proyectos</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="relative">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-brand-red to-brand-blue rounded-2xl opacity-20 blur-xl">
+                    </div>
+                    <img src="img/taller/07_taller.jpg" alt="Taller de serigrafía Sericolorpy"
+                        class="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 lg:py-32 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="gradient-line w-24 mx-auto mb-6 rounded-full"></div>
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
+                    Nuestros Servicios
+                </h2>
+                <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+                    Soluciones completas de personalización para tu negocio
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1: Remeras -->
+                <div
+                    class="bg-gray-900 rounded-2xl overflow-hidden card-hover border-l-4 border-brand-red hover:border-brand-blue transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="img/remeras/02_remeras_personalizadas.webp" alt="Remeras Personalizadas"
+                            class="w-full h-full object-cover img-zoom">
+                        <span
+                            class="absolute top-4 left-4 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-full">
+                            POPULAR
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="font-heading text-xl font-bold text-white">Remeras Personalizadas</h3>
+                        <p class="text-gray-400 text-sm">
+                            Impresión de alta calidad en remeras 100% algodón con tus diseños
+                        </p>
+                        <button
+                            onclick="sendWhatsAppMessage('remeras personalizadas', 'Hola, me interesa solicitar remeras personalizadas. ¿Cuáles son las opciones de colores, telas y tamaños disponibles? Quisiera conocer más detalles y presupuesto.')"
+                            class="btn-whatsapp w-full text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Solicitar Remeras
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 2: Regalos Corporativos -->
+                <div
+                    class="bg-gray-900 rounded-2xl overflow-hidden card-hover border-l-4 border-brand-red hover:border-brand-blue transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="img/regalos/02_regalos_corporativos.jpg" alt="Regalos Corporativos"
+                            class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="font-heading text-xl font-bold text-white">Regalos Corporativos</h3>
+                        <p class="text-gray-400 text-sm">
+                            Hoppys, vasos, llaveros y bolígrafos personalizados para tu empresa
+                        </p>
+                        <button
+                            onclick="sendWhatsAppMessage('regalos corporativos', 'Hola, estoy interesado en regalos corporativos personalizados. ¿Qué opciones tienen en hoppys, vasos, llaveros y bolígrafos? Me gustaría recibir un presupuesto.')"
+                            class="btn-whatsapp w-full text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Consultar Regalos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 3: Gorras -->
+                <div
+                    class="bg-gray-900 rounded-2xl overflow-hidden card-hover border-l-4 border-brand-red hover:border-brand-blue transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="img/gorras/01_custom_hats.jpg" alt="Gorras y Sombreros"
+                            class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="font-heading text-xl font-bold text-white">Gorras y Sombreros</h3>
+                        <p class="text-gray-400 text-sm">
+                            Gorras de béisbol, sombreros y quepis con bordado y serigrafía
+                        </p>
+                        <button
+                            onclick="sendWhatsAppMessage('gorras y sombreros', 'Hola, me interesa personalizar gorras y sombreros. ¿Qué estilos tienen disponibles? Me gustaría conocer opciones de bordado y serigrafía, así como presupuesto.')"
+                            class="btn-whatsapp w-full text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Pedir Gorras
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 4: Merchandising -->
+                <div
+                    class="bg-gray-900 rounded-2xl overflow-hidden card-hover border-l-4 border-brand-red hover:border-brand-blue transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="img/eventos/05_event_merchandise.png" alt="Merchandising de Eventos"
+                            class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="font-heading text-xl font-bold text-white">Merchandising de Eventos</h3>
+                        <p class="text-gray-400 text-sm">
+                            Camisetas, accesorios y artículos especiales para tus eventos
+                        </p>
+                        <button
+                            onclick="sendWhatsAppMessage('merchandising de eventos', 'Hola, necesito merchandising personalizado para un evento. ¿Qué opciones tienen en camisetas, accesorios y otros artículos? Quisiera un presupuesto.')"
+                            class="btn-whatsapp w-full text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Merchandising de Eventos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 5: Calcomanías -->
+                <div
+                    class="bg-gray-900 rounded-2xl overflow-hidden card-hover border-l-4 border-brand-red hover:border-brand-blue transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="img/stickers/07_stickers_serigrafia.jpg" alt="Calcomanías y Adhesivos"
+                            class="w-full h-full object-cover img-zoom">
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="font-heading text-xl font-bold text-white">Calcomanías y Adhesivos</h3>
+                        <p class="text-gray-400 text-sm">
+                            Stickers personalizados de cualquier tamaño y forma
+                        </p>
+                        <button
+                            onclick="sendWhatsAppMessage('calcomanías y stickers', 'Hola, me interesa hacer calcomanías y stickers personalizados. ¿Qué tamaños y materiales tienen disponibles? Me gustaría conocer presupuesto y tiempos de entrega.')"
+                            class="btn-whatsapp w-full text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Solicitar Stickers
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 6: Especiales -->
+                <div
+                    class="bg-gray-900 rounded-2xl overflow-hidden card-hover border-l-4 border-brand-red hover:border-brand-blue transition-all duration-300">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="img/especiales/01_cojin_personalizado.jpg" alt="Artículos Especiales"
+                            class="w-full h-full object-cover img-zoom">
+                        <span
+                            class="absolute top-4 left-4 bg-brand-green text-brand-dark text-xs font-bold px-3 py-1 rounded-full">
+                            NUEVO
+                        </span>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <h3 class="font-heading text-xl font-bold text-white">Artículos Especiales</h3>
+                        <p class="text-gray-400 text-sm">
+                            Calendarios, almohadas, mantas, tote bags y más productos personalizables
+                        </p>
+                        <button
+                            onclick="sendWhatsAppMessage('artículos especiales', 'Hola, me interesa personalizar artículos especiales como calendarios, almohadas, mantas o tote bags. ¿Qué opciones tienen? Quisiera recibir un presupuesto.')"
+                            class="btn-whatsapp w-full text-white py-3 rounded-lg font-semibold flex items-center justify-center">
+                            <i class="fab fa-whatsapp mr-2 text-lg"></i> Consultar Especiales
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+            <div class="text-center mt-12">
+                <a href="servicios.html"
+                    class="inline-flex items-center border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-brand-dark transition-all duration-300">
+                    Ver Todos los Servicios <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="py-20 lg:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Image -->
+                <div class="order-2 lg:order-1 relative">
+                    <div
+                        class="absolute -inset-4 bg-gradient-to-r from-brand-yellow to-brand-green rounded-2xl opacity-20 blur-xl">
+                    </div>
+                    <img src="img/taller/01_proceso_serigrafico.jpg" alt="Equipo Sericolorpy"
+                        class="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover">
+                </div>
+
+                <!-- Text Content -->
+                <div class="order-1 lg:order-2 space-y-6">
+                    <p class="text-brand-yellow font-semibold tracking-widest uppercase text-sm">
+                        TRAYECTORIA
+                    </p>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-brand-dark leading-tight">
+                        Tres Décadas de Innovación y Calidad
+                    </h2>
+                    <div class="space-y-4 text-brand-gray leading-relaxed">
+                        <p>
+                            <strong class="text-brand-dark">Sericolorpy</strong> nació en 1996 con la visión de ofrecer
+                            soluciones de personalización accesibles y de calidad. Lo que comenzó como un pequeño taller
+                            se ha convertido en un referente en la industria.
+                        </p>
+                        <p>
+                            Nuestro éxito se basa en tres pilares: <span class="text-brand-red font-semibold">calidad
+                                sin compromiso</span>, <span class="text-brand-blue font-semibold">atención
+                                personalizada</span> e <span class="text-brand-green font-semibold">innovación
+                                constante</span>. Cada cliente es importante y cada proyecto recibe nuestra dedicación
+                            total.
+                        </p>
+                        <p>
+                            Hoy, con casi tres décadas de experiencia, seguimos creciendo y adaptándonos a las nuevas
+                            tendencias del mercado, siempre manteniendo nuestros valores fundamentales.
+                        </p>
+                    </div>
+
+                    <a href="contacto.html"
+                        class="inline-flex items-center gradient-cta text-white px-8 py-4 rounded-full font-semibold btn-scale">
+                        Conoce Más Sobre Nosotros <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="relative py-24 overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="img/remeras/01_remeras_serigrafia.jpg" alt="Productos personalizados"
+                class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-brand-red/80 to-brand-blue/80"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+            <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                ¿Listo para Personalizar tu Proyecto?
+            </h2>
+            <p class="text-white/90 text-lg mb-10 max-w-2xl mx-auto">
+                Contacta con nosotros hoy y recibe tu presupuesto sin compromiso
+            </p>
+            <a href="contacto.html"
+                class="inline-flex items-center bg-white text-brand-red px-10 py-5 rounded-full font-bold text-lg btn-scale shadow-2xl">
+                <i class="fas fa-paper-plane mr-3"></i> Solicitar Pedido
+            </a>
+        </div>
+    </section>
+
+    <!-- Social Gallery Section -->
+    <section class="py-20 lg:py-32 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mb-4">
+                    Síguenos en Redes Sociales
+                </h2>
+                <p class="text-gray-400 text-lg">
+                    @sericolorpy en Facebook e Instagram
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Image 1 -->
+                <a href="https://instagram.com/sericolorpy" target="_blank"
+                    class="relative group overflow-hidden rounded-xl aspect-square">
+                    <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=800&q=80"
+                        alt="Remeras en proceso"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+
+                <!-- Image 2 -->
+                <a href="https://instagram.com/sericolorpy" target="_blank"
+                    class="relative group overflow-hidden rounded-xl aspect-square">
+                    <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=800&q=80"
+                        alt="Detalle de grabado"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+
+                <!-- Image 3 -->
+                <a href="https://instagram.com/sericolorpy" target="_blank"
+                    class="relative group overflow-hidden rounded-xl aspect-square">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=800&q=80"
+                        alt="Productos variados"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+
+                <!-- Image 4 -->
+                <a href="https://facebook.com/sericolorpy" target="_blank"
+                    class="relative group overflow-hidden rounded-xl aspect-square">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
+                        alt="Cliente satisfecho"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-facebook text-white text-4xl"></i>
+                    </div>
+                </a>
+
+                <!-- Image 5 -->
+                <a href="https://facebook.com/sericolorpy" target="_blank"
+                    class="relative group overflow-hidden rounded-xl aspect-square">
+                    <img src="https://images.unsplash.com/photo-1558403194-611308249627?w=800&q=80"
+                        alt="Proyecto corporativo"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-facebook text-white text-4xl"></i>
+                    </div>
+                </a>
+
+                <!-- Image 6 -->
+                <a href="https://instagram.com/sericolorpy" target="_blank"
+                    class="relative group overflow-hidden rounded-xl aspect-square">
+                    <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=800&q=80"
+                        alt="Ambiente del taller"
+                        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fab fa-instagram text-white text-4xl"></i>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 mt-12">
+                <a href="https://facebook.com/sericolorpy" target="_blank"
+                    class="flex items-center text-white hover:text-brand-blue transition-colors">
+                    <i class="fab fa-facebook text-2xl mr-2"></i> Facebook
+                </a>
+                <a href="https://instagram.com/sericolorpy" target="_blank"
+                    class="flex items-center text-white hover:text-pink-500 transition-colors">
+                    <i class="fab fa-instagram text-2xl mr-2"></i> Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white">
+        <!-- Gradient top border -->
+        <div class="gradient-line"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Column 1: Logo + Description -->
+                <div class="space-y-6">
+                    <a href="index.html" class="inline-block">
+                        <span class="font-heading text-2xl font-bold">
+                            Seri<span class="text-brand-red">color</span>py
+                        </span>
+                    </a>
+                    <p class="text-gray-400 leading-relaxed">
+                        Serigrafía y Regalos Empresariales desde 1996. Transformamos tus ideas en productos
+                        personalizados de alta calidad.
+                    </p>
+                    <p class="text-brand-yellow font-semibold italic">
+                        "La nueva imagen en serigrafía"
+                    </p>
+                </div>
+
+                <!-- Column 2: Navigation -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6 text-brand-yellow">Navegación</h4>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="index.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Inicio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="servicios.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Servicios
+                            </a>
+                        </li>
+                        <li>
+                            <a href="remeras.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Remeras Personalizadas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="contacto.html"
+                                class="text-gray-400 hover:text-brand-yellow transition-colors flex items-center">
+                                <i class="fas fa-chevron-right text-brand-red mr-2 text-xs"></i> Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Hours -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6 text-brand-yellow">Horarios de Atención</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-brand-red mr-3 mt-1"></i>
+                            <div>
+                                <span class="text-white font-medium">Lunes a Viernes</span><br>
+                                8:00 - 17:00
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-brand-red mr-3 mt-1"></i>
+                            <div>
+                                <span class="text-white font-medium">Sábado</span><br>
+                                9:00 - 13:00
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-gray-500 mr-3 mt-1"></i>
+                            <div>
+                                <span class="text-gray-500">Domingo</span><br>
+                                Cerrado
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Contact -->
+                <div>
+                    <h4 class="font-heading text-lg font-bold mb-6 text-brand-yellow">Contacto</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-brand-red mr-3 mt-1"></i>
+                            <span>Iturbe 879 c/ Manuel Dominguez<br>Asunción, Paraguay</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-brand-red mr-3"></i>
+                            <a href="tel:+595982317274" class="hover:text-brand-yellow transition-colors">
+                                +595 982 317 274
+                            </a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-brand-red mr-3"></i>
+                            <a href="mailto:sericolorpy@yahoo.com" class="hover:text-brand-yellow transition-colors">
+                                sericolorpy@yahoo.com
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="https://facebook.com/sericolorpy" target="_blank"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-brand-blue transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/sericolorpy" target="_blank"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-gradient-to-br hover:from-purple-500 hover:to-pink-500 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/595982317274" target="_blank"
+                            class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-green-500 transition-colors">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <p class="text-gray-500 text-sm text-center md:text-left">
+                        © 1996-2025 Sericolorpy. Todos los derechos reservados.
+                    </p>
+                    <p class="text-gray-500 text-sm">
+                        29 años de excelencia en serigrafía
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/595982317274?text=Hola,%20me%20interesa%20conocer%20más%20sobre%20sus%20servicios%20de%20serigrafía."
+        target="_blank"
+        class="fixed bottom-6 right-6 w-16 h-16 bg-green-500 rounded-full flex items-center justify-center shadow-lg hover:bg-green-600 transition-all hover:scale-110 z-40">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <!-- WhatsApp Messages Script -->
+    <script src="js/whatsapp-messages.js"></script>
+</body>
+
+</html>
