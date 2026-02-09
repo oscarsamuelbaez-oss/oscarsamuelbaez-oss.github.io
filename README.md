@@ -1,58 +1,42 @@
-# Sericolorpy - Sitio Web
+# Sericolorpy - Sitio Web Moderno
 
-Este proyecto es el sitio web oficial de Sericolorpy, una empresa con 29 años de experiencia en serigrafía y regalos empresariales personalizados.
+Este proyecto es el sitio web oficial de Sericolorpy, rediseñado con tecnologías modernas y una experiencia de usuario mejorada.
 
-## 🚀 Acceso Directo (Versión HTML Estática)
+## 🚀 Características Principales
 
-El sitio web ha sido convertido a HTML estático para que puedas abrirlo directamente en tu navegador sin necesidad de un servidor.
+*   **Diseño Premium**: Interfaz moderna con glassmorphism, gradientes y animaciones suaves.
+*   **AI Design Studio**: Generador de diseños de remeras impulsado por Inteligencia Artificial (Flux AI).
+*   **Configurador Interactivo**: Vista previa en tiempo real de colores, cuellos y telas.
+*   **Pedidos vía WhatsApp**: Sistema integrado que genera mensajes detallados y PDFs automáticos.
+*   **100% Estático**: No requiere servidor backend, ideal para un despliegue rápido y seguro.
 
-**Para ver el sitio web:**
+## 🌐 Cómo Publicar en GitHub Pages
 
-1.  Abre la carpeta del proyecto.
-2.  Haz doble clic en el archivo **`index.html`**.
-3.  ¡Listo! Puedes navegar por todo el sitio.
+El sitio está optimizado para funcionar perfectamente en GitHub Pages. Sigue estos pasos para publicarlo:
 
-### Archivos Disponibles:
-*   **`index.html`**: Página de Inicio.
-*   **`servicios.html`**: Catálogo completo de servicios.
-*   **`remeras.html`**: Configurador interactivo de remeras.
-*   **`contacto.html`**: Formulario de contacto y ubicación.
+1.  **Sube tu código**: Asegúrate de subir todas las carpetas, especialmente `img/`, `css/` y `js/` a tu repositorio de GitHub.
+2.  **Configuración**: Ve a la pestaña **Settings** de tu repositorio.
+3.  **Pages**: En el menú lateral izquierdo, haz clic en **Pages**.
+4.  **Source**: Selecciona **Deploy from a branch**.
+5.  **Branch**: Elige `main` (o `master`) y la carpeta `/ (root)`.
+6.  **Guardar**: Haz clic en Save.
 
----
+¡En unos minutos tu sitio estará en vivo! GitHub te dará un enlace (ej: `tu-usuario.github.io/tu-repo`).
 
-## 🛠️ Desarrollo (Versión PHP Original)
-
-Si deseas trabajar con el código fuente original en PHP, los archivos siguen disponibles:
-*   `index.php`
-*   `servicios.php`
-*   `remeras.php`
-*   `contacto.php`
-*   `includes/` (header y footer)
-
-Para ejecutar la versión PHP, necesitarás un servidor local como XAMPP o utilizar el servidor interno de PHP:
-```bash
-php -S localhost:8000
-```
-
-## ✨ Características
-
-*   **Diseño Moderno y Profesional**: Estética premium con colores de marca (Rojo, Azul, Amarillo, Verde).
-*   **Responsivo**: Se adapta perfectamente a móviles, tablets y computadoras.
-*   **Configurador de Remeras**: Herramienta interactiva para previsualizar remeras con colores y diseños.
-*   **Integración con WhatsApp**: Todos los formularios y botones de contacto envían mensajes directos a WhatsApp con la información pre-cargada.
-*   **Animaciones**: Efectos suaves de transición y hover.
+> **Nota Importante**: Las imágenes y enlaces están configurados con **rutas relativas** para asegurar que funcionen correctamente tanto en tu computadora como en la versión publicada.
 
 ## 📁 Estructura del Proyecto
 
-*   **`*.html`**: Versión estática lista para usar.
-*   **`*.php`**: Código fuente dinámico.
-*   **`css/`**: Estilos adicionales (aunque se usa principalmente Tailwind vía CDN).
-*   **`js/`**: Lógica de JavaScript.
-    *   `whatsapp-messages.js`: Manejo de mensajes.
-    *   `remeras-configurador.js`: Lógica del configurador.
-*   **`img/`**: Imágenes del proyecto (actualmente usando placeholders de Unsplash).
+*   **`index.html`**: Página de Inicio (Landing Page).
+*   **`remeras.html`**: Configurador y AI Design Studio.
+*   **`servicios.html`**: Catálogo de servicios.
+*   **`contacto.html`**: Información de contacto.
+*   **`js/`**:
+    *   `gemini-integration.js`: Lógica de Inteligencia Artificial.
+    *   `remeras-configurador.js`: Funcionalidad del configurador.
+*   **`img/`**: Imágenes optimizadas del proyecto.
 
 ## 🎨 Créditos
-*   Diseño y Desarrollo: Google DeepMind Agent
-*   Imágenes: Unsplash (Licencia gratuita)
-*   Iconos: Font Awesome
+*   Desarrollo: Google DeepMind Agent (Antigravity)
+*   Diseño: Personalizado para Sericolorpy
+*   Tecnologías: HTML5, TailwindCSS, JavaScript, Pollinations AI
